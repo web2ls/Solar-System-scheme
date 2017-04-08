@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Solar System simple scheme</title>
+    <style>
+      body {
+        background: url(http://www.picshare.ru/uploads/170402/W2P2zHw81K.jpg);
+        }
+
+      .sun-image,
+      .mercury-image,
+      .venus-image,
+      .earth-image,
+      .moon-image,
+      .mars-image,
+      .jupiter-image,
+      .saturn-image,
+      .uranus-image,
+      .neptune-image {
+      display: none;
+      }
+    </style>
+  </head>
+  <body>
+
+    <canvas id="canvas" width=1400 height=1200></canvas>
+    <img class="sun-image" src="https://image.ibb.co/fMfwwF/sun2.png">
+    <img class="mercury-image" src="https://image.ibb.co/gwvL6F/mercury.png">
+    <img class="venus-image" src="https://image.ibb.co/hL74iv/venus.png">
+    <img class="earth-image" src="https://image.ibb.co/cDTOAa/earth.png">
+    <img class="moon-image" src="https://image.ibb.co/dm7Fqa/moon.png">
+    <img class="mars-image" src="https://image.ibb.co/kh1x3v/mars.png">
+    <img class="jupiter-image" src="https://image.ibb.co/cqZvqa/jupiter.png">
+    <img class="saturn-image" src="https://image.ibb.co/k1cgVa/saturn.png">
+    <img class="uranus-image" src="https://image.ibb.co/k96x3v/uranus.png">
+    <img class="neptune-image" src="https://image.ibb.co/hveH3v/neptune.png">
+
+    <script>
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+
+      var sun = document.querySelector('.sun-image');
+      var mercury = document.querySelector('.mercury-image');
+      var venus = document.querySelector('.venus-image');
+      var earth = document.querySelector('.earth-image');
+      var moon = document.querySelector('.moon-image');
+      var mars = document.querySelector('.mars-image');
+      var jupiter = document.querySelector('.jupiter-image');
+      var saturn = document.querySelector('.saturn-image');
+      var uranus = document.querySelector('.uranus-image');
+      var neptune = document.querySelector('.neptune-image');
+
+
+      //Data for Mercury object
+      var mercuryCordX = 500;
+      var mercuryCordY = 400;
+      var mercuryRadius = 120;
+      var mercuryCurrentAngle = 0;
+
+      //Data for Venus object
+      var venusCordX = 500;
+      var venusCordY = 400;
+      var venusRadius = 145;
+      var venusCurrentAngle = 125;
+
+      //Data for Earth object
+      var earthCordX = 500;
+      var earthCordY = 400;
+      var earthRadius = 200;
+      var earthCurrentAngle = 15;
+
+      //Data for Moon object
+      var moonCordX = 0;
+      var moonCordY = 0;
+      var moonRadius = 30;
+      var moonCurrentAngle = 35;
+
+      //Data for Mars object
+      var marsCordX = 500;
+      var marsCordY = 400;
+      var marsRadius = 250;
+      var marsCurrentAngle = 180;
+
+      //Data for Jupiter object
+      var jupiterCordX = 500;
+      var jupiterCordY = 400;
+      var jupiterRadius = 300;
+      var jupiterCurrentAngle = 30;
+
+      //Data for Saturn object
+      var saturnCordX = 500;
+      var saturnCordY = 400;
+      var saturnRadius = 400;
+      var saturnCurrentAngle = 135;
+
+      //Data for Uranus object
+      var uranusCordX = 500;
+      var uranusCordY = 400;
+      var uranusRadius = 430;
+      var uranusCurrentAngle = 45;
+
+      //Data for Neptune object
+      var neptuneCordX = 500;
+      var neptuneCordY = 400;
+      var neptuneRadius = 470;
+      var neptuneCurrentAngle = 180;
+
+
+      function draw() {
+        setInterval(function() {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+
+          var mercuryVX = Math.cos(mercuryCurrentAngle) * mercuryRadius;
+          var mercuryVY = Math.sin(mercuryCurrentAngle) * mercuryRadius;
+
+          var venusVX = Math.cos(venusCurrentAngle) * venusRadius;
+          var venusVY = Math.sin(venusCurrentAngle) * venusRadius;
+
+          var earthVX = Math.cos(earthCurrentAngle) * earthRadius;
+          var earthVY = Math.sin(earthCurrentAngle) * earthRadius;
+
+          var moonVX = Math.cos(moonCurrentAngle) * moonRadius;
+          var moonVY = Math.sin(moonCurrentAngle) * moonRadius;
+
+          var marsVX = Math.cos(marsCurrentAngle) * marsRadius;
+          var marsVY = Math.sin(marsCurrentAngle) * marsRadius;
+
+          var jupiterVX = Math.cos(jupiterCurrentAngle) * jupiterRadius;
+          var jupiterVY = Math.sin(jupiterCurrentAngle) * jupiterRadius;
+
+          var saturnVX = Math.cos(saturnCurrentAngle) * saturnRadius;
+          var saturnVY = Math.sin(saturnCurrentAngle) * saturnRadius;
+
+          var uranusVX = Math.cos(uranusCurrentAngle) * uranusRadius;
+          var uranusVY = Math.sin(uranusCurrentAngle) * uranusRadius;
+
+          var neptuneVX = Math.cos(neptuneCurrentAngle) * neptuneRadius;
+          var neptuneVY = Math.sin(neptuneCurrentAngle) * neptuneRadius;
+
+          context.drawImage(sun, 450, 350);
+
+          context.drawImage(mercury, mercuryCordX + mercuryVX, mercuryCordY + mercuryVY, 12, 12);
+          mercuryCurrentAngle += 0.01;
+
+          context.drawImage(venus, venusCordX + venusVX, venusCordY + venusVY, 20, 20);
+          venusCurrentAngle += 0.01;
+
+          context.drawImage(earth, earthCordX + earthVX, earthCordY + earthVY, 21, 21);
+          earthCurrentAngle += 0.01;
+
+          context.drawImage(moon, earthCordX + earthVX + moonVX, earthCordY + earthVY + moonVY, 6, 6);
+          moonCurrentAngle += 0.08;
+
+          context.drawImage(mars, marsCordX + marsVX, marsCordY + marsVY, 13, 13);
+          marsCurrentAngle += 0.01;
+
+          context.drawImage(jupiter, jupiterCordX + jupiterVX, jupiterCordY + jupiterVY, 62, 62);
+          jupiterCurrentAngle += 0.005;
+
+          context.drawImage(saturn, saturnCordX + saturnVX, saturnCordY + saturnVY, 55, 55);
+          saturnCurrentAngle += 0.004;
+
+          context.drawImage(uranus, uranusCordX + uranusVX, uranusCordY + uranusVY, 52, 52);
+          uranusCurrentAngle += 0.002;
+
+          context.drawImage(neptune, neptuneCordX + neptuneVX, neptuneCordY + neptuneVY, 50, 50);
+          neptuneCurrentAngle += 0.002;
+        }, 60);
+
+      };
+
+      window.onload = function() {
+      draw();
+      };
+    </script>
+  </body>
+</html>
